@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+
+<?php
+// application.php
+
+require __DIR__.'/vendor/autoload.php';
+
+
+use App\Console\RenderCommand;
+use App\Console\ShowTaskCommand;
+use App\Database\DB;
+use Symfony\Component\Console\Application;
+
+
+$application = new Application("Task App","1.0");
+
+
+try {
+    $db = new \PDO('sqlite:db_file.sqlite3', '', '', array(
+    \PDO::ATTR_EMULATE_PREPARES => false,
+    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+    ));
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+    exit(1);
+}
+
+$db = new DB($pdo);
+
+
+$application->add(new ShowTaskCommand($db));
+
+$application->run();

@@ -1,0 +1,19 @@
+{
+  "name": "abbasroholamin/build-command-line-app",
+  "description": "Build command line app with symfony console component",
+  "type": "project",
+  "require": {
+    "symfony/console": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "Abbas Roholamin",
+      "email": "abbasroholamin76@gmail.com"
+    }
+  ]
+}
